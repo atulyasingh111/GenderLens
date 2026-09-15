@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Pretrained embedding models
+models/
+*.bin
+*.vec
