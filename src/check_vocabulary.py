@@ -1,21 +1,11 @@
 import pandas as pd
-from gensim.models import KeyedVectors
+import gensim.downloader as api
 
-
-# Path to the pretrained Word2Vec model
-MODEL_PATH = "models/GoogleNews-vectors-negative300.bin"
-
-# Path to the occupation dataset
+MODEL_NAME = "word2vec-google-news-300"
 DATA_PATH = "data/occupations.csv"
-
-
-# Load the pretrained Word2Vec model
 print("Loading Word2Vec model...")
 
-model = KeyedVectors.load_word2vec_format(
-    MODEL_PATH,
-    binary=True
-)
+model = api.load(MODEL_NAME)
 
 print("Model loaded successfully.")
 
