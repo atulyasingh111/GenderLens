@@ -90,29 +90,24 @@ def analyze_word(word):
     }
 
 
-# Test the analysis with one occupation
+# Analyze all occupations in the dataset
 if __name__ == "__main__":
 
-    test_word = "engineer"
+    import pandas as pd
 
-    result = analyze_word(test_word)
+    DATA_PATH = "data/occupations.csv"
 
-    print("\nGenderLens Test Result")
-    print("----------------------")
-    print("Word:", result["word"])
-    print(
-        "Average similarity with male attributes:",
-        result["male_similarity"]
-    )
-    print(
-        "Average similarity with female attributes:",
-        result["female_similarity"]
-    )
-    print(
-        "Gender association score:",
-        result["gender_association_score"]
-    )
-    print(
-        "Association:",
-        result["association_label"]
-    )
+    occupations = pd.read_csv(DATA_PATH)
+
+    print("\nGenderLens Occupation Analysis")
+    print("-----------------------------")
+
+    for word in occupations["occupation"]:
+
+        result = analyze_word(word)
+
+        print(
+            f"{result['word']}: "
+            f"{result['gender_association_score']:.4f} "
+            f"({result['association_label']})"
+        )
