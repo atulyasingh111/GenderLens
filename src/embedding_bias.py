@@ -1,23 +1,36 @@
 import numpy as np
+import pandas as pd
 import gensim.downloader as api
 
 
-# Name of the pretrained Word2Vec model
+# --------------------------------------------------
+# Configuration
+# --------------------------------------------------
+
 MODEL_NAME = "word2vec-google-news-300"
 
+OCCUPATIONS_PATH = "data/occupations.csv"
+REFERENCE_PATH = "data/reference_words.csv"
+EXPLORATORY_PATH = "data/exploratory_terms.csv"
 
-# Load the pretrained Word2Vec model
-print("Loading Word2Vec model...")
-
-model = api.load(MODEL_NAME)
-
-print("Model loaded successfully.")
-
-
-# Gender attribute word sets
 MALE_WORDS = ["he", "him", "man", "boy"]
 FEMALE_WORDS = ["she", "her", "woman", "girl"]
 
+NEAR_BALANCED_THRESHOLD = 0.01
+
+
+# --------------------------------------------------
+# Load pretrained Word2Vec model
+# --------------------------------------------------
+
+print("Loading Word2Vec model...")
+model = api.load(MODEL_NAME)
+print("Model loaded successfully.")
+
+
+# --------------------------------------------------
+# Calculate gender association score
+# --------------------------------------------------
 
 def association_score(word):
     """
@@ -25,13 +38,8 @@ def association_score(word):
 
     Score =
     average similarity with male attribute words
-    -
+    minus
     average similarity with female attribute words
-
-    Interpretation:
-        score > 0  -> Male-associated
-        score < 0  -> Female-associated
-        score ≈ 0  -> Near-balanced
     """
 
     male_similarities = [
@@ -52,9 +60,13 @@ def association_score(word):
     return male_average, female_average, gender_association_score
 
 
-def get_association_label(score, threshold=0.01):
+# --------------------------------------------------
+# Assign neutral interpretation labels
+# --------------------------------------------------
+
+def get_association_label(score, threshold=NEAR_BALANCED_THRESHOLD):
     """
-    Convert the numerical association score into a neutral label.
+    Convert the numerical score into a neutral category.
     """
 
     if score > threshold:
@@ -67,10 +79,13 @@ def get_association_label(score, threshold=0.01):
         return "Near-balanced"
 
 
+# --------------------------------------------------
+# Analyze one word
+# --------------------------------------------------
+
 def analyze_word(word):
     """
-    Calculate similarities, association score,
-    and association label for one word.
+    Analyze one word and return its results.
     """
 
     male_average, female_average, gender_association_score = (
@@ -85,24 +100,85 @@ def analyze_word(word):
         "word": word,
         "male_similarity": float(male_average),
         "female_similarity": float(female_average),
-        "gender_association_score": float(gender_association_score),
+        "gender_association_score": float(
+            gender_association_score
+        ),
         "association_label": association_label
     }
 
 
-# Analyze all occupations in the dataset
+# --------------------------------------------------
+# Main analysis
+# --------------------------------------------------
+
 if __name__ == "__main__":
 
-    import pandas as pd
+    # Load datasets
+    occupations = pd.read_csv(OCCUPATIONS_PATH)
+    reference_words = pd.read_csv(REFERENCE_PATH)
+    exploratory_terms = pd.read_csv(EXPLORATORY_PATH)
 
-    DATA_PATH = "data/occupations.csv"
+    # Remove accidental whitespace from CSV values
+    occupations["occupation"] = (
+        occupations["occupation"]
+        .astype(str)
+        .str.strip()
+    )
 
-    occupations = pd.read_csv(DATA_PATH)
+    reference_words["reference_word"] = (
+        reference_words["reference_word"]
+        .astype(str)
+        .str.strip()
+    )
+
+    exploratory_terms["term"] = (
+        exploratory_terms["term"]
+        .astype(str)
+        .str.strip()
+    )
+
+    # ----------------------------------------------
+    # Occupation Analysis
+    # ----------------------------------------------
 
     print("\nGenderLens Occupation Analysis")
-    print("-----------------------------")
+    print("------------------------------")
 
     for word in occupations["occupation"]:
+
+        result = analyze_word(word)
+
+        print(
+            f"{result['word']}: "
+            f"{result['gender_association_score']:.4f} "
+            f"({result['association_label']})"
+        )
+
+    # ----------------------------------------------
+    # Reference Word Analysis
+    # ----------------------------------------------
+
+    print("\nGenderLens Reference Word Analysis")
+    print("----------------------------------")
+
+    for word in reference_words["reference_word"]:
+
+        result = analyze_word(word)
+
+        print(
+            f"{result['word']}: "
+            f"{result['gender_association_score']:.4f} "
+            f"({result['association_label']})"
+        )
+
+    # ----------------------------------------------
+    # Exploratory Term Analysis
+    # ----------------------------------------------
+
+    print("\nGenderLens Exploratory Term Analysis")
+    print("------------------------------------")
+
+    for word in exploratory_terms["term"]:
 
         result = analyze_word(word)
 
