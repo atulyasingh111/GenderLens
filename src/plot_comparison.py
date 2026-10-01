@@ -33,23 +33,28 @@ comparison = comparison.sort_values(
     "gender_association_score_before"
 )
 
-
 plt.figure(figsize=(12, 8))
 
+y = range(len(comparison))
+height = 0.35
+
 plt.barh(
-    comparison["word"],
+    [i - height / 2 for i in y],
     comparison["gender_association_score_before"],
-    alpha=0.7,
+    height=height,
+    alpha=0.8,
     label="Before debiasing"
 )
 
 plt.barh(
-    comparison["word"],
+    [i + height / 2 for i in y],
     comparison["gender_association_score_after"],
-    alpha=0.7,
+    height=height,
+    alpha=0.8,
     label="After debiasing"
 )
 
+plt.yticks(y, comparison["word"])
 plt.axvline(
     0,
     linewidth=1
