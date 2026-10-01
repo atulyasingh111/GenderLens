@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import gensim.downloader as api
 
 
@@ -10,6 +11,8 @@ GENDER_PAIRS = [
     ("man", "woman"),
     ("boy", "girl"),
 ]
+
+OCCUPATIONS_PATH = "data/occupations.csv"
 
 
 print("Loading Word2Vec model...")
@@ -29,61 +32,157 @@ def create_gender_direction(model, gender_pairs):
 
     gender_direction = np.mean(directions, axis=0)
 
-    # Normalize the direction
-    gender_direction = gender_direction / np.linalg.norm(gender_direction)
+    gender_direction = (
+        gender_direction / np.linalg.norm(gender_direction)
+    )
 
     return gender_direction
 
 
-gender_direction = create_gender_direction(model, GENDER_PAIRS)
-
-print("\nGender direction created.")
-print("Dimensions:", gender_direction.shape)
-print("First 5 values:", gender_direction[:5])
-def gender_projection(word, model, gender_direction):
-    vector = model[word]
-
-    projection = np.dot(vector, gender_direction)
-
-    return projection
-
-
-test_words = [
-    "he",
-    "she",
-    "man",
-    "woman",
-    "engineer",
-    "nurse",
-    "doctor",
-]
-
-print("\nGender direction projections:")
-
-for word in test_words:
-    projection = gender_projection(word, model, gender_direction)
-    print(f"{word}: {projection:.4f}")
 def debias_word(word, model, gender_direction):
     vector = model[word].copy()
 
-    projection = np.dot(vector, gender_direction) * gender_direction
+    projection = (
+        np.dot(vector, gender_direction)
+        * gender_direction
+    )
 
     debiased_vector = vector - projection
 
     return debiased_vector
 
 
-print("\nTesting debiasing:")
+gender_direction = create_gender_direction(
+    model,
+    GENDER_PAIRS
+)
 
-for word in ["engineer", "nurse", "doctor", "teacher", "manager"]:
-    original = model[word]
-    debiased = debias_word(word, model, gender_direction)
+print("\nGender direction created.")
+print("Dimensions:", gender_direction.shape)
 
-    original_projection = np.dot(original, gender_direction)
-    debiased_projection = np.dot(debiased, gender_direction)
+
+occupations = pd.read_csv(OCCUPATIONS_PATH)
+
+print("\nApplying debiasing to occupations...")
+
+debiased_vectors = {}
+
+for word in occupations["occupation"]:
+    word = word.strip()
+
+    debiased_vectors[word] = debias_word(
+        word,
+        model,
+        gender_direction
+    )
+
+    print(f"Debiased: {word}")
+
+
+print("\nDebiasing complete.")
+print("Total occupations processed:", len(debiased_vectors))
+def cosine_similarity(vector_a, vector_b):
+    return np.dot(vector_a, vector_b) / (
+        np.linalg.norm(vector_a) * np.linalg.norm(vector_b)
+    )
+
+
+def association_score_debiased(word, debiased_vector):
+    male_similarities = []
+    female_similarities = []
+
+    for male_word, female_word in GENDER_PAIRS:
+        male_similarities.append(
+            cosine_similarity(
+                debiased_vector,
+                model[male_word]
+            )
+        )
+
+        female_similarities.append(
+            cosine_similarity(
+                debiased_vector,
+                model[female_word]
+            )
+        )
+
+    male_similarity = np.mean(male_similarities)
+    female_similarity = np.mean(female_similarities)
+
+    score = male_similarity - female_similarity
+
+    return male_similarity, female_similarity, score
+
+
+print("\nAfter-debiasing association scores:")
+
+import json
+
+AFTER_RESULTS_PATH = "results/after_debiasing.json"
+
+after_results = {
+    "model": MODEL_NAME,
+    "male_attributes": ["he", "him", "man", "boy"],
+    "female_attributes": ["she", "her", "woman", "girl"],
+    "near_balanced_threshold": 0.01,
+    "method": "Gender-direction neutralization",
+    "occupations": []
+}
+
+print("\nAfter-debiasing association scores:")
+
+for word, debiased_vector in debiased_vectors.items():
+
+    male_similarities = []
+    female_similarities = []
+
+    for male_word, female_word in GENDER_PAIRS:
+
+        male_similarities.append(
+            cosine_similarity(
+                debiased_vector,
+                model[male_word]
+            )
+        )
+
+        female_similarities.append(
+            cosine_similarity(
+                debiased_vector,
+                model[female_word]
+            )
+        )
+
+    male_similarity = np.mean(male_similarities)
+    female_similarity = np.mean(female_similarities)
+
+    score = male_similarity - female_similarity
+
+    if score > 0.01:
+        label = "Male-associated"
+    elif score < -0.01:
+        label = "Female-associated"
+    else:
+        label = "Near-balanced"
+
+    result = {
+        "word": word,
+        "male_similarity": float(male_similarity),
+        "female_similarity": float(female_similarity),
+        "gender_association_score": float(score),
+        "association_label": label
+    }
+
+    after_results["occupations"].append(result)
 
     print(
         f"{word}: "
-        f"before={original_projection:.4f}, "
-        f"after={debiased_projection:.4f}"
+        f"male={male_similarity:.4f}, "
+        f"female={female_similarity:.4f}, "
+        f"score={score:.4f}"
     )
+
+
+with open(AFTER_RESULTS_PATH, "w") as file:
+    json.dump(after_results, file, indent=4)
+
+print(f"\nResults saved to {AFTER_RESULTS_PATH}")
