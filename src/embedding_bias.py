@@ -1,3 +1,4 @@
+import json
 import numpy as np
 import pandas as pd
 import gensim.downloader as api
@@ -12,6 +13,7 @@ MODEL_NAME = "word2vec-google-news-300"
 OCCUPATIONS_PATH = "data/occupations.csv"
 REFERENCE_PATH = "data/reference_words.csv"
 EXPLORATORY_PATH = "data/exploratory_terms.csv"
+RESULTS_PATH = "results/before_debiasing.json"
 
 MALE_WORDS = ["he", "him", "man", "boy"]
 FEMALE_WORDS = ["she", "her", "woman", "girl"]
@@ -137,6 +139,17 @@ if __name__ == "__main__":
         .str.strip()
     )
 
+    # Store all results
+    results = {
+        "model": MODEL_NAME,
+        "male_attributes": MALE_WORDS,
+        "female_attributes": FEMALE_WORDS,
+        "near_balanced_threshold": NEAR_BALANCED_THRESHOLD,
+        "occupations": [],
+        "reference_words": [],
+        "exploratory_terms": []
+    }
+
     # ----------------------------------------------
     # Occupation Analysis
     # ----------------------------------------------
@@ -147,6 +160,8 @@ if __name__ == "__main__":
     for word in occupations["occupation"]:
 
         result = analyze_word(word)
+
+        results["occupations"].append(result)
 
         print(
             f"{result['word']}: "
@@ -165,6 +180,8 @@ if __name__ == "__main__":
 
         result = analyze_word(word)
 
+        results["reference_words"].append(result)
+
         print(
             f"{result['word']}: "
             f"{result['gender_association_score']:.4f} "
@@ -182,8 +199,20 @@ if __name__ == "__main__":
 
         result = analyze_word(word)
 
+        results["exploratory_terms"].append(result)
+
         print(
             f"{result['word']}: "
             f"{result['gender_association_score']:.4f} "
             f"({result['association_label']})"
         )
+
+    # ----------------------------------------------
+    # Save Results
+    # ----------------------------------------------
+
+    with open(RESULTS_PATH, "w") as file:
+        json.dump(results, file, indent=4)
+
+    print(f"\nResults saved to {RESULTS_PATH}")
+       

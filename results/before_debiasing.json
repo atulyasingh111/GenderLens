@@ -1,0 +1,351 @@
+{
+    "model": "word2vec-google-news-300",
+    "male_attributes": [
+        "he",
+        "him",
+        "man",
+        "boy"
+    ],
+    "female_attributes": [
+        "she",
+        "her",
+        "woman",
+        "girl"
+    ],
+    "near_balanced_threshold": 0.01,
+    "occupations": [
+        {
+            "word": "engineer",
+            "male_similarity": 0.10052524507045746,
+            "female_similarity": 0.035384222865104675,
+            "gender_association_score": 0.06514102220535278,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "doctor",
+            "male_similarity": 0.3108081817626953,
+            "female_similarity": 0.30364301800727844,
+            "gender_association_score": 0.00716516375541687,
+            "association_label": "Near-balanced"
+        },
+        {
+            "word": "nurse",
+            "male_similarity": 0.20877231657505035,
+            "female_similarity": 0.38841140270233154,
+            "gender_association_score": -0.1796390861272812,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "teacher",
+            "male_similarity": 0.2319982796907425,
+            "female_similarity": 0.3127715289592743,
+            "gender_association_score": -0.0807732492685318,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "lawyer",
+            "male_similarity": 0.17669545114040375,
+            "female_similarity": 0.17132413387298584,
+            "gender_association_score": 0.005371317267417908,
+            "association_label": "Near-balanced"
+        },
+        {
+            "word": "banker",
+            "male_similarity": 0.1960965394973755,
+            "female_similarity": 0.16317592561244965,
+            "gender_association_score": 0.03292061388492584,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "scientist",
+            "male_similarity": 0.09279841184616089,
+            "female_similarity": 0.10112334042787552,
+            "gender_association_score": -0.00832492858171463,
+            "association_label": "Near-balanced"
+        },
+        {
+            "word": "programmer",
+            "male_similarity": 0.06418834626674652,
+            "female_similarity": 0.06396514922380447,
+            "gender_association_score": 0.00022319704294204712,
+            "association_label": "Near-balanced"
+        },
+        {
+            "word": "accountant",
+            "male_similarity": 0.14819803833961487,
+            "female_similarity": 0.16094018518924713,
+            "gender_association_score": -0.012742146849632263,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "manager",
+            "male_similarity": 0.05800655484199524,
+            "female_similarity": 0.008218005299568176,
+            "gender_association_score": 0.04978854954242706,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "secretary",
+            "male_similarity": 0.04083239287137985,
+            "female_similarity": 0.06926492601633072,
+            "gender_association_score": -0.028432533144950867,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "receptionist",
+            "male_similarity": 0.1722794771194458,
+            "female_similarity": 0.3501160740852356,
+            "gender_association_score": -0.1778365969657898,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "mechanic",
+            "male_similarity": 0.2546491026878357,
+            "female_similarity": 0.1620418131351471,
+            "gender_association_score": 0.0926072895526886,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "pilot",
+            "male_similarity": 0.12751324474811554,
+            "female_similarity": 0.11389502882957458,
+            "gender_association_score": 0.013618215918540955,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "chef",
+            "male_similarity": 0.13348190486431122,
+            "female_similarity": 0.13137602806091309,
+            "gender_association_score": 0.0021058768033981323,
+            "association_label": "Near-balanced"
+        },
+        {
+            "word": "designer",
+            "male_similarity": 0.007627265062183142,
+            "female_similarity": 0.10583825409412384,
+            "gender_association_score": -0.09821099042892456,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "artist",
+            "male_similarity": 0.1598888486623764,
+            "female_similarity": 0.21601805090904236,
+            "gender_association_score": -0.056129202246665955,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "journalist",
+            "male_similarity": 0.1976185142993927,
+            "female_similarity": 0.21723075211048126,
+            "gender_association_score": -0.019612237811088562,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "investor",
+            "male_similarity": 0.07500480115413666,
+            "female_similarity": 0.05096442997455597,
+            "gender_association_score": 0.02404037117958069,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "ceo",
+            "male_similarity": -0.07490204274654388,
+            "female_similarity": -0.10684292018413544,
+            "gender_association_score": 0.03194087743759155,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "boss",
+            "male_similarity": 0.2308395504951477,
+            "female_similarity": 0.12455817312002182,
+            "gender_association_score": 0.10628137737512589,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "leader",
+            "male_similarity": 0.1552785187959671,
+            "female_similarity": 0.058928005397319794,
+            "gender_association_score": 0.09635051339864731,
+            "association_label": "Male-associated"
+        }
+    ],
+    "reference_words": [
+        {
+            "word": "person",
+            "male_similarity": 0.38709187507629395,
+            "female_similarity": 0.38348641991615295,
+            "gender_association_score": 0.003605455160140991,
+            "association_label": "Near-balanced"
+        },
+        {
+            "word": "individual",
+            "male_similarity": 0.10873107612133026,
+            "female_similarity": 0.09524337947368622,
+            "gender_association_score": 0.013487696647644043,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "human",
+            "male_similarity": 0.09042955935001373,
+            "female_similarity": 0.146271213889122,
+            "gender_association_score": -0.055841654539108276,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "worker",
+            "male_similarity": 0.22048337757587433,
+            "female_similarity": 0.28774580359458923,
+            "gender_association_score": -0.0672624260187149,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "object",
+            "male_similarity": 0.1446460783481598,
+            "female_similarity": 0.14797529578208923,
+            "gender_association_score": -0.0033292174339294434,
+            "association_label": "Near-balanced"
+        },
+        {
+            "word": "thing",
+            "male_similarity": 0.23451068997383118,
+            "female_similarity": 0.17490994930267334,
+            "gender_association_score": 0.05960074067115784,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "concept",
+            "male_similarity": 0.07235096395015717,
+            "female_similarity": 0.07980959117412567,
+            "gender_association_score": -0.007458627223968506,
+            "association_label": "Near-balanced"
+        },
+        {
+            "word": "idea",
+            "male_similarity": 0.16886618733406067,
+            "female_similarity": 0.14229021966457367,
+            "gender_association_score": 0.026575967669487,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "entity",
+            "male_similarity": 0.07416317611932755,
+            "female_similarity": 0.04565681517124176,
+            "gender_association_score": 0.028506360948085785,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "someone",
+            "male_similarity": 0.4629363715648651,
+            "female_similarity": 0.41799262166023254,
+            "gender_association_score": 0.04494374990463257,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "something",
+            "male_similarity": 0.2725885510444641,
+            "female_similarity": 0.23494432866573334,
+            "gender_association_score": 0.037644222378730774,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "being",
+            "male_similarity": 0.22109869122505188,
+            "female_similarity": 0.16235168278217316,
+            "gender_association_score": 0.05874700844287872,
+            "association_label": "Male-associated"
+        }
+    ],
+    "exploratory_terms": [
+        {
+            "word": "boss",
+            "male_similarity": 0.2308395504951477,
+            "female_similarity": 0.12455817312002182,
+            "gender_association_score": 0.10628137737512589,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "bossy",
+            "male_similarity": 0.12318286299705505,
+            "female_similarity": 0.2618923485279083,
+            "gender_association_score": -0.13870948553085327,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "condescending",
+            "male_similarity": 0.1377549171447754,
+            "female_similarity": 0.17026536166667938,
+            "gender_association_score": -0.03251044452190399,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "assertive",
+            "male_similarity": 0.0877569168806076,
+            "female_similarity": 0.11620666831731796,
+            "gender_association_score": -0.028449751436710358,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "aggressive",
+            "male_similarity": 0.08253446221351624,
+            "female_similarity": 0.03994061052799225,
+            "gender_association_score": 0.04259385168552399,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "confident",
+            "male_similarity": 0.08352717012166977,
+            "female_similarity": 0.013106431812047958,
+            "gender_association_score": 0.07042074203491211,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "ambitious",
+            "male_similarity": 0.05930195748806,
+            "female_similarity": 0.02808249741792679,
+            "gender_association_score": 0.03121946007013321,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "emotional",
+            "male_similarity": 0.1455320417881012,
+            "female_similarity": 0.18110719323158264,
+            "gender_association_score": -0.035575151443481445,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "sensitive",
+            "male_similarity": 0.0013443995267152786,
+            "female_similarity": 0.05228441208600998,
+            "gender_association_score": -0.05094001442193985,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "gentle",
+            "male_similarity": 0.17610733211040497,
+            "female_similarity": 0.16035446524620056,
+            "gender_association_score": 0.015752866864204407,
+            "association_label": "Male-associated"
+        },
+        {
+            "word": "nurturing",
+            "male_similarity": 0.08638960123062134,
+            "female_similarity": 0.13688300549983978,
+            "gender_association_score": -0.050493404269218445,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "caring",
+            "male_similarity": 0.1671152412891388,
+            "female_similarity": 0.2269129902124405,
+            "gender_association_score": -0.0597977489233017,
+            "association_label": "Female-associated"
+        },
+        {
+            "word": "competitive",
+            "male_similarity": 0.04004288464784622,
+            "female_similarity": 0.008014868013560772,
+            "gender_association_score": 0.032028015702962875,
+            "association_label": "Male-associated"
+        }
+    ]
+}
