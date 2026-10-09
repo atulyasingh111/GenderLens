@@ -72,7 +72,7 @@ plt.savefig(
     dpi=300
 )
 
-plt.show()
+plt.savefig("results/before_after_comparison.png", dpi=300)
 
 print(
     "\nGraph saved to "
