@@ -1,0 +1,25 @@
+services:
+
+  analysis:
+    build: .
+    container_name: genderlens-analysis
+    command: python src/run_pipeline.py
+    volumes:
+      - results:/app/results
+      - gensim_cache:/root/gensim-data
+
+  dashboard:
+    build: .
+    container_name: genderlens-dashboard
+    command: streamlit run dashboard/app.py --server.address=0.0.0.0
+    ports:
+      - "8501:8501"
+    volumes:
+      - results:/app/results
+    depends_on:
+      analysis:
+        condition: service_completed_successfully
+
+volumes:
+  results:
+  gensim_cache:

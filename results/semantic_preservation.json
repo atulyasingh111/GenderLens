@@ -1,0 +1,470 @@
+{
+    "model": "word2vec-google-news-300",
+    "method": "Gender-direction neutralization",
+    "semantic_relationships_tested": 66,
+    "mean_absolute_similarity_change": 0.0043886987435998335,
+    "results": [
+        {
+            "occupation": "engineer",
+            "related_word": "technology",
+            "similarity_before": 0.20367024838924408,
+            "similarity_after": 0.21067464351654053,
+            "change": 0.007004395127296448
+        },
+        {
+            "occupation": "engineer",
+            "related_word": "machine",
+            "similarity_before": 0.15394209325313568,
+            "similarity_after": 0.1508798450231552,
+            "change": -0.0030622482299804688
+        },
+        {
+            "occupation": "engineer",
+            "related_word": "design",
+            "similarity_before": 0.36648157238960266,
+            "similarity_after": 0.3758483827114105,
+            "change": 0.009366810321807861
+        },
+        {
+            "occupation": "doctor",
+            "related_word": "hospital",
+            "similarity_before": 0.5143237113952637,
+            "similarity_after": 0.5134232044219971,
+            "change": -0.0009005069732666016
+        },
+        {
+            "occupation": "doctor",
+            "related_word": "medicine",
+            "similarity_before": 0.4975842237472534,
+            "similarity_after": 0.4977932870388031,
+            "change": 0.00020906329154968262
+        },
+        {
+            "occupation": "doctor",
+            "related_word": "patient",
+            "similarity_before": 0.5283132195472717,
+            "similarity_after": 0.5273796319961548,
+            "change": -0.0009335875511169434
+        },
+        {
+            "occupation": "nurse",
+            "related_word": "hospital",
+            "similarity_before": 0.5039893984794617,
+            "similarity_after": 0.5196994543075562,
+            "change": 0.015710055828094482
+        },
+        {
+            "occupation": "nurse",
+            "related_word": "patient",
+            "similarity_before": 0.5331992506980896,
+            "similarity_after": 0.5500746369361877,
+            "change": 0.016875386238098145
+        },
+        {
+            "occupation": "nurse",
+            "related_word": "medicine",
+            "similarity_before": 0.361185759305954,
+            "similarity_after": 0.3779125511646271,
+            "change": 0.016726791858673096
+        },
+        {
+            "occupation": "teacher",
+            "related_word": "school",
+            "similarity_before": 0.63824063539505,
+            "similarity_after": 0.6314671039581299,
+            "change": -0.006773531436920166
+        },
+        {
+            "occupation": "teacher",
+            "related_word": "student",
+            "similarity_before": 0.6301366090774536,
+            "similarity_after": 0.608305811882019,
+            "change": -0.02183079719543457
+        },
+        {
+            "occupation": "teacher",
+            "related_word": "education",
+            "similarity_before": 0.4891093075275421,
+            "similarity_after": 0.475923627614975,
+            "change": -0.013185679912567139
+        },
+        {
+            "occupation": "lawyer",
+            "related_word": "court",
+            "similarity_before": 0.4287324547767639,
+            "similarity_after": 0.42717915773391724,
+            "change": -0.0015532970428466797
+        },
+        {
+            "occupation": "lawyer",
+            "related_word": "legal",
+            "similarity_before": 0.4278131127357483,
+            "similarity_after": 0.42660221457481384,
+            "change": -0.0012108981609344482
+        },
+        {
+            "occupation": "lawyer",
+            "related_word": "law",
+            "similarity_before": 0.34465765953063965,
+            "similarity_after": 0.34217801690101624,
+            "change": -0.002479642629623413
+        },
+        {
+            "occupation": "banker",
+            "related_word": "bank",
+            "similarity_before": 0.6092953681945801,
+            "similarity_after": 0.6099337339401245,
+            "change": 0.0006383657455444336
+        },
+        {
+            "occupation": "banker",
+            "related_word": "finance",
+            "similarity_before": 0.40258321166038513,
+            "similarity_after": 0.40304991602897644,
+            "change": 0.0004667043685913086
+        },
+        {
+            "occupation": "banker",
+            "related_word": "money",
+            "similarity_before": 0.18365278840065002,
+            "similarity_after": 0.18358618021011353,
+            "change": -6.660819053649902e-05
+        },
+        {
+            "occupation": "scientist",
+            "related_word": "research",
+            "similarity_before": 0.4497030973434448,
+            "similarity_after": 0.44693729281425476,
+            "change": -0.0027658045291900635
+        },
+        {
+            "occupation": "scientist",
+            "related_word": "laboratory",
+            "similarity_before": 0.3994714915752411,
+            "similarity_after": 0.39797815680503845,
+            "change": -0.0014933347702026367
+        },
+        {
+            "occupation": "scientist",
+            "related_word": "experiment",
+            "similarity_before": 0.3030185103416443,
+            "similarity_after": 0.3042047917842865,
+            "change": 0.001186281442642212
+        },
+        {
+            "occupation": "programmer",
+            "related_word": "software",
+            "similarity_before": 0.43042269349098206,
+            "similarity_after": 0.4300892949104309,
+            "change": -0.00033339858055114746
+        },
+        {
+            "occupation": "programmer",
+            "related_word": "computer",
+            "similarity_before": 0.42506635189056396,
+            "similarity_after": 0.42395010590553284,
+            "change": -0.001116245985031128
+        },
+        {
+            "occupation": "programmer",
+            "related_word": "coding",
+            "similarity_before": 0.4049832224845886,
+            "similarity_after": 0.4041764438152313,
+            "change": -0.0008067786693572998
+        },
+        {
+            "occupation": "accountant",
+            "related_word": "finance",
+            "similarity_before": 0.3492145836353302,
+            "similarity_after": 0.34803470969200134,
+            "change": -0.0011798739433288574
+        },
+        {
+            "occupation": "accountant",
+            "related_word": "accounting",
+            "similarity_before": 0.42635247111320496,
+            "similarity_after": 0.42397376894950867,
+            "change": -0.002378702163696289
+        },
+        {
+            "occupation": "accountant",
+            "related_word": "numbers",
+            "similarity_before": 0.023797698318958282,
+            "similarity_after": 0.025651689618825912,
+            "change": 0.00185399129986763
+        },
+        {
+            "occupation": "manager",
+            "related_word": "business",
+            "similarity_before": 0.19058279693126678,
+            "similarity_after": 0.1932789534330368,
+            "change": 0.0026961565017700195
+        },
+        {
+            "occupation": "manager",
+            "related_word": "team",
+            "similarity_before": 0.23334048688411713,
+            "similarity_after": 0.22266989946365356,
+            "change": -0.010670587420463562
+        },
+        {
+            "occupation": "manager",
+            "related_word": "company",
+            "similarity_before": 0.19527466595172882,
+            "similarity_after": 0.19903624057769775,
+            "change": 0.003761574625968933
+        },
+        {
+            "occupation": "secretary",
+            "related_word": "office",
+            "similarity_before": 0.3000522255897522,
+            "similarity_after": 0.29851797223091125,
+            "change": -0.0015342533588409424
+        },
+        {
+            "occupation": "secretary",
+            "related_word": "administration",
+            "similarity_before": 0.3032434582710266,
+            "similarity_after": 0.301400363445282,
+            "change": -0.001843094825744629
+        },
+        {
+            "occupation": "secretary",
+            "related_word": "assistant",
+            "similarity_before": 0.4845922887325287,
+            "similarity_after": 0.4849879741668701,
+            "change": 0.00039568543434143066
+        },
+        {
+            "occupation": "receptionist",
+            "related_word": "office",
+            "similarity_before": 0.4211958348751068,
+            "similarity_after": 0.4313422739505768,
+            "change": 0.01014643907546997
+        },
+        {
+            "occupation": "receptionist",
+            "related_word": "hotel",
+            "similarity_before": 0.31202852725982666,
+            "similarity_after": 0.31593260169029236,
+            "change": 0.0039040744304656982
+        },
+        {
+            "occupation": "receptionist",
+            "related_word": "customer",
+            "similarity_before": 0.2974497377872467,
+            "similarity_after": 0.27504023909568787,
+            "change": -0.022409498691558838
+        },
+        {
+            "occupation": "mechanic",
+            "related_word": "engine",
+            "similarity_before": 0.40488696098327637,
+            "similarity_after": 0.40376293659210205,
+            "change": -0.0011240243911743164
+        },
+        {
+            "occupation": "mechanic",
+            "related_word": "car",
+            "similarity_before": 0.3269122540950775,
+            "similarity_after": 0.3345780670642853,
+            "change": 0.007665812969207764
+        },
+        {
+            "occupation": "mechanic",
+            "related_word": "repair",
+            "similarity_before": 0.3744875192642212,
+            "similarity_after": 0.3740333914756775,
+            "change": -0.00045412778854370117
+        },
+        {
+            "occupation": "pilot",
+            "related_word": "aircraft",
+            "similarity_before": 0.3989752531051636,
+            "similarity_after": 0.398947149515152,
+            "change": -2.810359001159668e-05
+        },
+        {
+            "occupation": "pilot",
+            "related_word": "aviation",
+            "similarity_before": 0.3522327244281769,
+            "similarity_after": 0.3521512746810913,
+            "change": -8.144974708557129e-05
+        },
+        {
+            "occupation": "pilot",
+            "related_word": "flight",
+            "similarity_before": 0.4060060679912567,
+            "similarity_after": 0.4060279130935669,
+            "change": 2.1845102310180664e-05
+        },
+        {
+            "occupation": "chef",
+            "related_word": "restaurant",
+            "similarity_before": 0.5571430921554565,
+            "similarity_after": 0.5560734868049622,
+            "change": -0.0010696053504943848
+        },
+        {
+            "occupation": "chef",
+            "related_word": "food",
+            "similarity_before": 0.3062422275543213,
+            "similarity_after": 0.30466267466545105,
+            "change": -0.0015795528888702393
+        },
+        {
+            "occupation": "chef",
+            "related_word": "cooking",
+            "similarity_before": 0.4959333837032318,
+            "similarity_after": 0.49384835362434387,
+            "change": -0.0020850300788879395
+        },
+        {
+            "occupation": "designer",
+            "related_word": "design",
+            "similarity_before": 0.5781337022781372,
+            "similarity_after": 0.5697683095932007,
+            "change": -0.008365392684936523
+        },
+        {
+            "occupation": "designer",
+            "related_word": "creative",
+            "similarity_before": 0.3284144699573517,
+            "similarity_after": 0.3286204934120178,
+            "change": 0.0002060234546661377
+        },
+        {
+            "occupation": "designer",
+            "related_word": "art",
+            "similarity_before": 0.3051519989967346,
+            "similarity_after": 0.2966597080230713,
+            "change": -0.00849229097366333
+        },
+        {
+            "occupation": "artist",
+            "related_word": "art",
+            "similarity_before": 0.5701862573623657,
+            "similarity_after": 0.5650123357772827,
+            "change": -0.005173921585083008
+        },
+        {
+            "occupation": "artist",
+            "related_word": "creative",
+            "similarity_before": 0.3248939514160156,
+            "similarity_after": 0.3242148458957672,
+            "change": -0.0006791055202484131
+        },
+        {
+            "occupation": "artist",
+            "related_word": "painting",
+            "similarity_before": 0.5401872992515564,
+            "similarity_after": 0.5366187691688538,
+            "change": -0.0035685300827026367
+        },
+        {
+            "occupation": "journalist",
+            "related_word": "news",
+            "similarity_before": 0.2817082405090332,
+            "similarity_after": 0.28428876399993896,
+            "change": 0.0025805234909057617
+        },
+        {
+            "occupation": "journalist",
+            "related_word": "media",
+            "similarity_before": 0.3246624767780304,
+            "similarity_after": 0.3287774622440338,
+            "change": 0.004114985466003418
+        },
+        {
+            "occupation": "journalist",
+            "related_word": "reporter",
+            "similarity_before": 0.7536269426345825,
+            "similarity_after": 0.7520584464073181,
+            "change": -0.0015684962272644043
+        },
+        {
+            "occupation": "investor",
+            "related_word": "finance",
+            "similarity_before": 0.30147042870521545,
+            "similarity_after": 0.3022214472293854,
+            "change": 0.0007510185241699219
+        },
+        {
+            "occupation": "investor",
+            "related_word": "market",
+            "similarity_before": 0.42087215185165405,
+            "similarity_after": 0.4210931658744812,
+            "change": 0.00022101402282714844
+        },
+        {
+            "occupation": "investor",
+            "related_word": "stocks",
+            "similarity_before": 0.4348633289337158,
+            "similarity_after": 0.43470498919487,
+            "change": -0.0001583397388458252
+        },
+        {
+            "occupation": "ceo",
+            "related_word": "company",
+            "similarity_before": 0.32740920782089233,
+            "similarity_after": 0.33150774240493774,
+            "change": 0.00409853458404541
+        },
+        {
+            "occupation": "ceo",
+            "related_word": "business",
+            "similarity_before": 0.2873569428920746,
+            "similarity_after": 0.2903004586696625,
+            "change": 0.0029435157775878906
+        },
+        {
+            "occupation": "ceo",
+            "related_word": "executive",
+            "similarity_before": 0.49306684732437134,
+            "similarity_after": 0.4961417317390442,
+            "change": 0.0030748844146728516
+        },
+        {
+            "occupation": "boss",
+            "related_word": "manager",
+            "similarity_before": 0.5121564865112305,
+            "similarity_after": 0.5085426568984985,
+            "change": -0.0036138296127319336
+        },
+        {
+            "occupation": "boss",
+            "related_word": "company",
+            "similarity_before": 0.1492055505514145,
+            "similarity_after": 0.1571018397808075,
+            "change": 0.007896289229393005
+        },
+        {
+            "occupation": "boss",
+            "related_word": "work",
+            "similarity_before": 0.12160506099462509,
+            "similarity_after": 0.12242323160171509,
+            "change": 0.0008181706070899963
+        },
+        {
+            "occupation": "leader",
+            "related_word": "team",
+            "similarity_before": 0.2593621611595154,
+            "similarity_after": 0.24062542617321014,
+            "change": -0.018736734986305237
+        },
+        {
+            "occupation": "leader",
+            "related_word": "management",
+            "similarity_before": 0.1352478563785553,
+            "similarity_after": 0.13196691870689392,
+            "change": -0.003280937671661377
+        },
+        {
+            "occupation": "leader",
+            "related_word": "organization",
+            "similarity_before": 0.27676454186439514,
+            "similarity_after": 0.2710326611995697,
+            "change": -0.0057318806648254395
+        }
+    ]
+}

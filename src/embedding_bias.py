@@ -1,67 +1,74 @@
+import json
 import numpy as np
-from gensim.models import KeyedVectors
+import pandas as pd
+import gensim.downloader as api
 
 
-# Path to the pretrained Word2Vec model
-MODEL_PATH = "models/GoogleNews-vectors-negative300.bin"
+# --------------------------------------------------
+# Configuration
+# --------------------------------------------------
 
+MODEL_NAME = "word2vec-google-news-300"
 
-# Load the pretrained Word2Vec model
-model = KeyedVectors.load_word2vec_format(
-    MODEL_PATH,
-    binary=True
-)
+OCCUPATIONS_PATH = "data/occupations.csv"
+REFERENCE_PATH = "data/reference_words.csv"
+EXPLORATORY_PATH = "data/exploratory_terms.csv"
+RESULTS_PATH = "results/before_debiasing.json"
 
-
-# Gender attribute word sets
 MALE_WORDS = ["he", "him", "man", "boy"]
 FEMALE_WORDS = ["she", "her", "woman", "girl"]
 
+NEAR_BALANCED_THRESHOLD = 0.01
+
+
+# --------------------------------------------------
+# Load pretrained Word2Vec model
+# --------------------------------------------------
+
+print("Loading Word2Vec model...")
+model = api.load(MODEL_NAME)
+print("Model loaded successfully.")
+
+
+# --------------------------------------------------
+# Calculate gender association score
+# --------------------------------------------------
 
 def association_score(word):
     """
     Calculate the word-level gender association score.
 
-    The score is calculated as:
-
-    average similarity with male words
-    -
-    average similarity with female words
-
-    Interpretation:
-        score > 0  -> Male-associated
-        score < 0  -> Female-associated
-        score ≈ 0  -> Near-balanced
+    Score =
+    average similarity with male attribute words
+    minus
+    average similarity with female attribute words
     """
 
-    # Similarity between the occupation and male attribute words
     male_similarities = [
         model.similarity(word, attribute)
         for attribute in MALE_WORDS
     ]
 
-    # Similarity between the occupation and female attribute words
     female_similarities = [
         model.similarity(word, attribute)
         for attribute in FEMALE_WORDS
     ]
 
-    # Average similarity for each attribute group
     male_average = np.mean(male_similarities)
     female_average = np.mean(female_similarities)
 
-    # Difference between the two averages
     gender_association_score = male_average - female_average
 
     return male_average, female_average, gender_association_score
 
 
-def get_association_label(score, threshold=0.01):
-    """
-    Convert the numerical association score into a neutral label.
+# --------------------------------------------------
+# Assign neutral interpretation labels
+# --------------------------------------------------
 
-    A small threshold is used because a score extremely close to
-    zero should be treated as approximately balanced.
+def get_association_label(score, threshold=NEAR_BALANCED_THRESHOLD):
+    """
+    Convert the numerical score into a neutral category.
     """
 
     if score > threshold:
@@ -74,12 +81,18 @@ def get_association_label(score, threshold=0.01):
         return "Near-balanced"
 
 
+# --------------------------------------------------
+# Analyze one word
+# --------------------------------------------------
+
 def analyze_word(word):
     """
-    Calculate similarities, association score, and label for one word.
+    Analyze one word and return its results.
     """
 
-    male_average, female_average, gender_association_score = association_score(word)
+    male_average, female_average, gender_association_score = (
+        association_score(word)
+    )
 
     association_label = get_association_label(
         gender_association_score
@@ -89,23 +102,117 @@ def analyze_word(word):
         "word": word,
         "male_similarity": float(male_average),
         "female_similarity": float(female_average),
-        "gender_association_score": float(gender_association_score),
+        "gender_association_score": float(
+            gender_association_score
+        ),
         "association_label": association_label
     }
 
 
-# Example usage
+# --------------------------------------------------
+# Main analysis
+# --------------------------------------------------
+
 if __name__ == "__main__":
 
-    test_word = "engineer"
+    # Load datasets
+    occupations = pd.read_csv(OCCUPATIONS_PATH)
+    reference_words = pd.read_csv(REFERENCE_PATH)
+    exploratory_terms = pd.read_csv(EXPLORATORY_PATH)
 
-    result = analyze_word(test_word)
+    # Remove accidental whitespace from CSV values
+    occupations["occupation"] = (
+        occupations["occupation"]
+        .astype(str)
+        .str.strip()
+    )
 
-    print("Word:", result["word"])
-    print("Average similarity with male attributes:",
-          result["male_similarity"])
-    print("Average similarity with female attributes:",
-          result["female_similarity"])
-    print("Gender association score:",
-          result["gender_association_score"])
-    print("Association:", result["association_label"])
+    reference_words["reference_word"] = (
+        reference_words["reference_word"]
+        .astype(str)
+        .str.strip()
+    )
+
+    exploratory_terms["term"] = (
+        exploratory_terms["term"]
+        .astype(str)
+        .str.strip()
+    )
+
+    # Store all results
+    results = {
+        "model": MODEL_NAME,
+        "male_attributes": MALE_WORDS,
+        "female_attributes": FEMALE_WORDS,
+        "near_balanced_threshold": NEAR_BALANCED_THRESHOLD,
+        "occupations": [],
+        "reference_words": [],
+        "exploratory_terms": []
+    }
+
+    # ----------------------------------------------
+    # Occupation Analysis
+    # ----------------------------------------------
+
+    print("\nGenderLens Occupation Analysis")
+    print("------------------------------")
+
+    for word in occupations["occupation"]:
+
+        result = analyze_word(word)
+
+        results["occupations"].append(result)
+
+        print(
+            f"{result['word']}: "
+            f"{result['gender_association_score']:.4f} "
+            f"({result['association_label']})"
+        )
+
+    # ----------------------------------------------
+    # Reference Word Analysis
+    # ----------------------------------------------
+
+    print("\nGenderLens Reference Word Analysis")
+    print("----------------------------------")
+
+    for word in reference_words["reference_word"]:
+
+        result = analyze_word(word)
+
+        results["reference_words"].append(result)
+
+        print(
+            f"{result['word']}: "
+            f"{result['gender_association_score']:.4f} "
+            f"({result['association_label']})"
+        )
+
+    # ----------------------------------------------
+    # Exploratory Term Analysis
+    # ----------------------------------------------
+
+    print("\nGenderLens Exploratory Term Analysis")
+    print("------------------------------------")
+
+    for word in exploratory_terms["term"]:
+
+        result = analyze_word(word)
+
+        results["exploratory_terms"].append(result)
+
+        print(
+            f"{result['word']}: "
+            f"{result['gender_association_score']:.4f} "
+            f"({result['association_label']})"
+        )
+
+    # ----------------------------------------------
+    # Save Results
+    # ----------------------------------------------
+
+    with open(RESULTS_PATH, "w") as file:
+        json.dump(results, file, indent=4)
+
+    print(f"\nResults saved to {RESULTS_PATH}")
+       
